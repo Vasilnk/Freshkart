@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
   final signupKey = GlobalKey<FormState>();
+
   final emailController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -24,6 +25,7 @@ class SignupScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     bool isWeb = width > 450;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -118,21 +120,52 @@ class SignupScreen extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Checkbox(
-                                      onChanged: (value) {},
-                                      value: true,
-                                      activeColor: AppColors.greenColor,
+                                    Consumer<SignupProvider>(
+                                      builder:
+                                          (context, state, child) => Checkbox(
+                                            onChanged: (value) {
+                                              state.privacyAgree =
+                                                  value ?? false;
+                                            },
+                                            value: state.isPrivacyAgreed,
+                                            activeColor: AppColors.greenColor,
+                                          ),
                                     ),
-                                    const Text(
-                                      '''I agree to the Terms of Service and  
-Privacy Policy''',
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'I agree to the Terms of Service and',
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context.push(Routes.privacyPolicy);
+                                          },
+                                          child: const Text(
+                                            'Privacy Policy',
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                255,
+                                                32,
+                                                69,
+                                                168,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
 
                                 ElevatedButton(
                                   onPressed: () async {
-                                    if (signupKey.currentState!.validate()) {
+                                    if (signupKey.currentState!.validate() &&
+                                        context
+                                                .read<SignupProvider>()
+                                                .isPrivacyAgreed ==
+                                            true) {
                                       String? result = await signUpProvider
                                           .signUp(
                                             email: emailController.text.trim(),

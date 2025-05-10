@@ -32,24 +32,7 @@ void main() async {
   runApp(const MyApp());
 }
 
-GoRouter router = GoRouter(
-  routes: Routes.routeBase,
-  initialLocation: Routes.splash,
-  // redirect: (context, state) {
-  //   if (kIsWeb) {
-  //     final isLoggedIn = FirebaseAuth.instance.currentUser != null;
-  //     bool isLogin = state.matchedLocation == Routes.login;
-  //     if (!isLoggedIn) {
-  //       return isLogin ? null : Routes.login;
-  //     }
-
-  //     if (isLogin) {
-  //       return Routes.landing;
-  //     }
-  //   }
-  //   return null;
-  // },
-);
+GoRouter router = GoRouter(routes: Routes.routeBase);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

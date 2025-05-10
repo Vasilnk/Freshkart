@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:freshkart/models/user_model.dart';
 import 'package:freshkart/view_model/providers/cart_provider.dart';
 import 'package:freshkart/view_model/providers/category_provider.dart';
 import 'package:freshkart/view_model/providers/notification_provider.dart';
@@ -38,12 +40,23 @@ class _LandingScreenState extends State<LandingScreen> {
   }
 
   Future<void> callFunction() async {
+    // final user = FirebaseAuth.instance.currentUser;
+    // if (user != null) {
+    //   UserServices.currentUser = UserModel(
+    //     email: user.email ?? '',
+    //     name: user.displayName ?? '',
+    //     uid: user.uid,
+    //   );
+    // }
+
     final productProvider = context.read<ProductProvider>();
     productProvider.getAllProducts();
     await productProvider.getOfferProducts();
     await context.read<CategoryProvider>().getCategories();
     await context.read<WshlistProvider>().getWishlistProducts(
-      UserServices.currentUser!.uid,
+      UserServices.currentUser?.uid ??
+          FirebaseAuth.instance.currentUser?.uid ??
+          '',
       productProvider.allProducts,
     );
     await context.read<CartProvider>().getCartItems();

@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freshkart/view/screens/account/about_screen.dart';
 import 'package:freshkart/view/screens/account/addresses_page.dart';
 import 'package:freshkart/view/screens/account/help_screen.dart';
 import 'package:freshkart/view/screens/account/my_details.dart';
 import 'package:freshkart/view/screens/account/order/orders_screen.dart';
+import 'package:freshkart/view/screens/account/privacy_policy_screen.dart';
 import 'package:freshkart/view/screens/account/wishlilst_screen.dart';
 import 'package:freshkart/view/screens/authentication/forget_password.dart';
 import 'package:freshkart/view/screens/authentication/login_screen.dart';
@@ -33,6 +35,7 @@ class Routes {
   static const String about = '/about';
   static const String productPage = '/product';
   static const String productsScreen = '/category';
+  static const String privacyPolicy = '/privacyPolicy';
 
   static List<RouteBase> routeBase = [
     GoRoute(
@@ -45,11 +48,31 @@ class Routes {
     ),
     GoRoute(
       path: Routes.welcome,
-      builder: (context, state) => const WelcomeScreen(),
+      builder: (context, state) {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          return const LandingScreen();
+        }
+
+        return const WelcomeScreen();
+      },
     ),
-    GoRoute(path: Routes.login, builder: (context, state) => LoginScreen()),
+    GoRoute(
+      path: Routes.login,
+      builder: (context, state) {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          return const LandingScreen();
+        }
+        return LoginScreen();
+      },
+    ),
     GoRoute(path: Routes.signup, builder: (context, state) => SignupScreen()),
     GoRoute(path: Routes.forgot, builder: (context, state) => ForgetPassword()),
+    GoRoute(
+      path: Routes.privacyPolicy,
+      builder: (context, state) => const PrivacyPolicyScreen(),
+    ),
 
     GoRoute(
       path: Routes.myDetails,

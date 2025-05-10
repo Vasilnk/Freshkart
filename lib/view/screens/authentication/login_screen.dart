@@ -10,20 +10,15 @@ import 'package:freshkart/view_model/providers/auth/login_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
   final loginKey = GlobalKey<FormState>();
-initState((){});
+
   @override
   Widget build(BuildContext context) {
     final isWeb = MediaQuery.of(context).size.width > 600;
@@ -90,7 +85,8 @@ initState((){});
                           );
 
                           if (result == 'success') {
-                            context.go(Routes.landing);
+                            context.replace(Routes.login);
+                            context.replace(Routes.landing);
                           } else {
                             CustomSnackbar.showCustomSnackBar(
                               context,

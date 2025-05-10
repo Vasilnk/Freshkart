@@ -132,8 +132,6 @@ class ProductCard extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            print('Tapped');
-
                             context.read<CartProvider>().addToCart(
                               name: product.name,
                               price:

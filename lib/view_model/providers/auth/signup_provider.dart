@@ -7,6 +7,11 @@ class SignupProvider extends ChangeNotifier {
   UserServices userServices = UserServices();
   FirebaseAuth auth = FirebaseAuth.instance;
   bool isLoading = false;
+  bool isPrivacyAgreed = false;
+  set privacyAgree(bool value) {
+    isPrivacyAgreed = value;
+    notifyListeners();
+  }
 
   Future<String?> signUp({
     required String email,

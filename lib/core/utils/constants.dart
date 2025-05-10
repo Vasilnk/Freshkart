@@ -27,8 +27,11 @@ class Constants {
       'icon': const Icon(Icons.info_outline, color: Colors.white),
       'screen': Routes.about,
     },
+    'PrivacyPolicy': {
+      'icon': const Icon(Icons.privacy_tip_outlined, color: Colors.white),
+      'screen': Routes.privacyPolicy,
+    },
   };
-
   static List<PopupMenuItem<String>> popupMenus = [
     const PopupMenuItem<String>(value: 'all', child: Text("All")),
     const PopupMenuItem<String>(value: 'discount', child: Text("Discount")),
