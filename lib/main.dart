@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:freshkart/core/routes.dart';
@@ -36,17 +34,21 @@ void main() async {
 
 GoRouter router = GoRouter(
   routes: Routes.routeBase,
-  redirect: (context, state) {
-    if (kIsWeb) {
-      final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+  initialLocation: Routes.splash,
+  // redirect: (context, state) {
+  //   if (kIsWeb) {
+  //     final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+  //     bool isLogin = state.matchedLocation == Routes.login;
+  //     if (!isLoggedIn) {
+  //       return isLogin ? null : Routes.login;
+  //     }
 
-      if (!isLoggedIn) return Routes.login;
-      if (isLoggedIn && state.matchedLocation == Routes.login) {
-        return Routes.landing;
-      }
-    }
-    return null;
-  },
+  //     if (isLogin) {
+  //       return Routes.landing;
+  //     }
+  //   }
+  //   return null;
+  // },
 );
 
 class MyApp extends StatelessWidget {

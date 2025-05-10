@@ -10,13 +10,20 @@ import 'package:freshkart/view_model/providers/auth/login_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final loginKey = GlobalKey<FormState>();
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  final loginKey = GlobalKey<FormState>();
+initState((){});
   @override
   Widget build(BuildContext context) {
     final isWeb = MediaQuery.of(context).size.width > 600;

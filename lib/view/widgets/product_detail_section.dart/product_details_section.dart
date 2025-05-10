@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:freshkart/models/product_model.dart';
-import 'package:freshkart/view/widgets/product_detail_section.dart/quantity_controller.dart';
 import 'package:freshkart/view/widgets/product_detail_section.dart/similar_product_section.dart';
 import 'package:freshkart/view_model/providers/product_provider.dart';
 import 'package:provider/provider.dart';
@@ -124,7 +123,7 @@ class _ProductDetailsSectionState extends State<ProductDetailsSection> {
                     ),
                   )
                   : const SizedBox.shrink(),
-              const DynamicQuantityInput(),
+              // const DynamicQuantityInput(),
             ],
           ),
 

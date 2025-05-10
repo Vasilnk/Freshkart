@@ -113,7 +113,7 @@ class SignupScreen extends StatelessWidget {
                               ),
                             ),
                             Column(
-                              spacing: 13,
+                              spacing: 7,
                               children: [
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -201,7 +201,7 @@ Privacy Policy''',
                                         SizedBox(
                                           height: 30,
                                           width: 40,
-                                          child: Image.network(
+                                          child: Image.asset(
                                             AppImages.googleIconImage,
                                           ),
                                         ),

@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "950396555093-sqaalke6jhq29hgolar96uj3s8jcbe35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.freshkart",
+            "certificate_hash": "cc0c19604a770d690482e2c8377f606d5d5f0e40"
+          }
+        },
+        {
           "client_id": "950396555093-7sd5e6p4jsoap09dl63vcee1dhj8649q.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -37,6 +45,13 @@
             {
               "client_id": "950396555093-7sd5e6p4jsoap09dl63vcee1dhj8649q.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "950396555093-q1ff9copalufcsa05vlb32beaa4sgd82.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dailyFresh"
+              }
             }
           ]
         }
@@ -66,6 +81,13 @@
             {
               "client_id": "950396555093-7sd5e6p4jsoap09dl63vcee1dhj8649q.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "950396555093-q1ff9copalufcsa05vlb32beaa4sgd82.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dailyFresh"
+              }
             }
           ]
         }

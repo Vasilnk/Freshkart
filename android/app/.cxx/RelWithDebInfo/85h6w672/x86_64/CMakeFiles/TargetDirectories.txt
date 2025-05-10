@@ -1,0 +1,2 @@
+C:/Users/vasil/Flutter Projects/Freshkart Projects/freshkart/android/app/.cxx/RelWithDebInfo/85h6w672/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/vasil/Flutter Projects/Freshkart Projects/freshkart/android/app/.cxx/RelWithDebInfo/85h6w672/x86_64/CMakeFiles/rebuild_cache.dir
