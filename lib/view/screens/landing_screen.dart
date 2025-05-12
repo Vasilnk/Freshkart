@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:freshkart/models/user_model.dart';
 import 'package:freshkart/view_model/providers/cart_provider.dart';
 import 'package:freshkart/view_model/providers/category_provider.dart';
 import 'package:freshkart/view_model/providers/notification_provider.dart';
