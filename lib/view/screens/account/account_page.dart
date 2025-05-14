@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:freshkart/core/routes.dart';
 import 'package:freshkart/core/utils/colors.dart';
@@ -7,8 +8,23 @@ import 'package:freshkart/view_model/services/user_services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
+
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    if (FirebaseAuth.instance.currentUser == null) {
+      context.go(Routes.splash);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

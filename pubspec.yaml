@@ -55,6 +55,7 @@ dependencies:
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.1
   cloud_functions: ^5.5.0
+  js: ^0.7.2
 
 dev_dependencies:
   flutter_test:

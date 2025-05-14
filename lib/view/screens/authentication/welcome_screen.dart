@@ -93,7 +93,9 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () => context.replace(Routes.login),
+                  onPressed: () {
+                    context.replace(Routes.login);
+                  },
                   style: AppStyles.bigButton,
                   child: Text(
                     'Get Started',
