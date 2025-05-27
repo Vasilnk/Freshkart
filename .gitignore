@@ -32,6 +32,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+# Ignore Stripe secret key Dart file
+lib/core/utils/stripe.dart
+
 
 # Symbolication related
 app.*.symbols

@@ -182,7 +182,7 @@ class OrderDetailScreen extends StatelessWidget {
   }
 
   Widget buildPaymentInfo() {
-    final paid = order['paidStatus'] == 'paid';
+    final paid = order['paidStatus'] == 'Paid';
     return Card(
       color: Colors.green[100],
 

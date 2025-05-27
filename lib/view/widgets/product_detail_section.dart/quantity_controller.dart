@@ -9,7 +9,7 @@ class DynamicQuantityInput extends StatefulWidget {
 }
 
 class _DynamicQuantityInputState extends State<DynamicQuantityInput> {
-  final String _selectedUnit = 'kg';
+  // final String _selectedUnit = 'kg';
   int quantity = 1;
   int unit = 0;
   String get grtQuantity => (quantity + unit).toStringAsFixed(3);
