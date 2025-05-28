@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:flutter_stripe_web/flutter_stripe_web.dart';
 import 'package:freshkart/core/utils/colors.dart';
 import 'package:freshkart/view_model/providers/cart_provider.dart';
 import 'package:freshkart/view_model/providers/order_provider.dart';
@@ -12,7 +11,6 @@ import 'package:freshkart/core/utils/stripe.dart';
 import 'package:freshkart/view/widgets/cart_section/failed_payment_display.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:web/web.dart' as web;
 
 class PaymentProvider extends ChangeNotifier {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -38,30 +36,20 @@ class PaymentProvider extends ChangeNotifier {
       paymentIntent = await createPaymentIntent(toatlPrice, 'INR');
       final clientSecret = paymentIntent!['client_secret'];
       try {
-        if (kIsWeb) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (c) => PaymentScreen(clientSecret: clientSecret, map: map),
-            ),
-          );
-        } else {
-          await Stripe.instance.initPaymentSheet(
-            paymentSheetParameters: SetupPaymentSheetParameters(
-              paymentIntentClientSecret: paymentIntent!['client_secret'],
-              style: ThemeMode.dark,
-              merchantDisplayName: 'Ikey',
-            ),
-          );
-        }
+        await Stripe.instance.initPaymentSheet(
+          paymentSheetParameters: SetupPaymentSheetParameters(
+            paymentIntentClientSecret: clientSecret,
+            style: ThemeMode.dark,
+            merchantDisplayName: 'Ikey',
+          ),
+        );
       } catch (e) {
         throw ('Exeption : $e');
       }
 
       loading = false;
       notifyListeners();
-      // await displalyPaymentSheet(context, map, isBuyNow);
+      await displalyPaymentSheet(context, map, isBuyNow);
     } catch (e) {
       loading = false;
       notifyListeners();
@@ -168,87 +156,5 @@ class PaymentProvider extends ChangeNotifier {
         builder: (context) => const FailedPaymentDisplay(),
       );
     }
-  }
-}
-
-class PlatformPaymentElement extends StatelessWidget {
-  final String clientSecret;
-  const PlatformPaymentElement(this.clientSecret, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return PaymentElement(
-      autofocus: true,
-      enablePostalCode: true,
-      clientSecret: clientSecret,
-      onCardChanged: (event) {},
-    );
-  }
-}
-
-class PaymentScreen extends StatelessWidget {
-  final String clientSecret;
-  final Map<String, dynamic> map;
-  const PaymentScreen({
-    super.key,
-    required this.clientSecret,
-    required this.map,
-  });
-
-  String getReturnUrl() => web.window.location.href;
-
-  Future<void> confirmPayment(BuildContext context) async {
-    try {
-      try {
-        // await WebStripe.instance.confirmPaymentElement(
-        //   ConfirmPaymentElementOptions(
-        //     confirmParams: ConfirmPaymentParams(return_url: getReturnUrl()),
-        //   ),
-        // );
-      } catch (e) {
-        print('confirm error  $e');
-      }
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (c) => const SuccessOrder()),
-      );
-
-      context.read<OrderProvider>().addOrder(map);
-      context.read<CartProvider>().deleteCart();
-    } catch (e) {}
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Complete Your Payment")),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            width: 500,
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                PaymentElement(
-                  clientSecret: clientSecret,
-                  autofocus: true,
-                  enablePostalCode: true,
-                  onCardChanged: (details) {},
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () async {
-                    await confirmPayment(context);
-                  },
-                  child: const Text("Pay Now"),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
