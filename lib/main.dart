@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:freshkart/core/routes.dart';
-
 import 'package:freshkart/core/utils/colors.dart';
 import 'package:freshkart/core/utils/stripe.dart';
 import 'package:go_router/go_router.dart';

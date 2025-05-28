@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:freshkart/models/product_model.dart';
+import 'package:freshkart/view/widgets/icons/wishlist_icon.dart';
 import 'package:freshkart/view/widgets/product_detail_section.dart/similar_product_section.dart';
 import 'package:freshkart/view_model/providers/product_provider.dart';
+import 'package:freshkart/view_model/providers/wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailsSection extends StatefulWidget {
@@ -66,9 +68,22 @@ class _ProductDetailsSectionState extends State<ProductDetailsSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            product.name,
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                product.name,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              WishlistIconButton(
+                isFavorite: product.offer,
+                value: context.read<WshlistProvider>(),
+                name: product.name,
+              ),
+            ],
           ),
           const SizedBox(height: 4),
           Text(
