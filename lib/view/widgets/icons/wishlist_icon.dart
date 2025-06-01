@@ -5,12 +5,12 @@ import 'package:freshkart/view_model/services/user_services.dart';
 
 class WishlistIconButton extends StatelessWidget {
   final bool isFavorite;
-  final WshlistProvider value;
+  final WishlistProvider provider;
   final String name;
   const WishlistIconButton({
     super.key,
     required this.isFavorite,
-    required this.value,
+    required this.provider,
     required this.name,
   });
 
@@ -19,10 +19,10 @@ class WishlistIconButton extends StatelessWidget {
     return IconButton(
       onPressed: () {
         if (isFavorite) {
-          value.removeFavorite(name, UserServices.currentUser!.uid, context);
+          provider.removeFavorite(name, UserServices.currentUser!.uid, context);
           showToast('$name removed from wishlist', false);
         } else {
-          value.addFavorite(name, UserServices.currentUser!.uid);
+          provider.addFavorite(name, UserServices.currentUser!.uid);
           showToast('$name added to wishlist');
         }
       },

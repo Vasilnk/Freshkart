@@ -78,10 +78,17 @@ class _ProductDetailsSectionState extends State<ProductDetailsSection> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              WishlistIconButton(
-                isFavorite: product.offer,
-                value: context.read<WshlistProvider>(),
-                name: product.name,
+              Consumer<WishlistProvider>(
+                builder: (context, value, child) {
+                  final isFavorite = value.favoriteProductIds.contains(
+                    product.name,
+                  );
+                  return WishlistIconButton(
+                    isFavorite: isFavorite,
+                    provider: context.read<WishlistProvider>(),
+                    name: product.name,
+                  );
+                },
               ),
             ],
           ),

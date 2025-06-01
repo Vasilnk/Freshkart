@@ -116,14 +116,14 @@ class SearchBarProductTile extends StatelessWidget {
                   ],
                 ),
               ),
-              Consumer<WshlistProvider>(
+              Consumer<WishlistProvider>(
                 builder: (context, value, child) {
                   final isFavorite = value.favoriteProductIds.contains(
                     product.name,
                   );
                   return WishlistIconButton(
                     isFavorite: isFavorite,
-                    value: value,
+                    provider: value,
                     name: product.name,
                   );
                 },

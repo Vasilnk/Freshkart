@@ -4,7 +4,7 @@ import 'package:freshkart/models/product_model.dart';
 import 'package:freshkart/view_model/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 
-class WshlistProvider extends ChangeNotifier {
+class WishlistProvider extends ChangeNotifier {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   List<ProductModel> favoriteProducts = [];
   List<String> favoriteProductIds = [];

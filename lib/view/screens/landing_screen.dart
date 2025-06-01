@@ -53,7 +53,7 @@ class _LandingScreenState extends State<LandingScreen> {
     productProvider.getAllProducts();
     await productProvider.getOfferProducts();
     await context.read<CategoryProvider>().getCategories();
-    await context.read<WshlistProvider>().getWishlistProducts(
+    await context.read<WishlistProvider>().getWishlistProducts(
       UserServices.currentUser?.uid ??
           FirebaseAuth.instance.currentUser?.uid ??
           '',

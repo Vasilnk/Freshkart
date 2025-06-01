@@ -20,7 +20,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<WshlistProvider>().getWishlistProducts(
+      context.read<WishlistProvider>().getWishlistProducts(
         UserServices.currentUser!.uid,
         context.read<ProductProvider>().allProducts,
       );
@@ -31,7 +31,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppbar(title: 'Wishlist'),
-      body: Consumer<WshlistProvider>(
+      body: Consumer<WishlistProvider>(
         builder: (context, value, child) {
           final products = value.favoriteProducts;
 

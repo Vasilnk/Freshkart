@@ -162,14 +162,14 @@ class ProductCard extends StatelessWidget {
           Positioned(
             right: -2,
             top: -4,
-            child: Consumer<WshlistProvider>(
+            child: Consumer<WishlistProvider>(
               builder: (context, value, child) {
                 final isFavorite = value.favoriteProductIds.contains(
                   product.name,
                 );
                 return WishlistIconButton(
                   isFavorite: isFavorite,
-                  value: value,
+                  provider: value,
                   name: product.name,
                 );
               },
